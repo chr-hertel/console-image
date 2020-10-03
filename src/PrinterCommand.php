@@ -25,7 +25,7 @@ class PrinterCommand extends Command
 
         $terminal = new Terminal();
         $width = $terminal->getWidth();
-        $height = $terminal->getHeight() * 2;
+        $height = $terminal->getHeight() * 2 - 4;
 
         $printer = new Printer($output);
         $printer->print($image, $width, $height);
