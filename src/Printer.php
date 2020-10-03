@@ -21,14 +21,17 @@ class Printer
 
         [$width, $height] = $reader->getScaledDimensions($maxWidth, $maxHeight);
 
+        $output = '';
         for ($y = 0; $y < $height; $y += 2) {
             for ($x = 0; $x < $width; $x++) {
                 $bgColor = $reader->getImagePixel($x, $y)->toHex();
                 $fgColor = $y + 1 >= $height ? 'black' : $reader->getImagePixel($x, $y + 1)->toHex();
-                $this->output->write(sprintf('<fg=%s;bg=%s>▄</>', $fgColor, $bgColor));
+                $output .= sprintf('<fg=%s;bg=%s>▄</>', $fgColor, $bgColor);
             }
 
-            $this->output->write(PHP_EOL);
+            $output .= PHP_EOL;
         }
+
+        $this->output->write($output);
     }
 }
