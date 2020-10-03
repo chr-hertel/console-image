@@ -49,9 +49,11 @@ class Reader
                 throw new \InvalidArgumentException(sprintf('Mime type "%s" is not supported', $mimeType));
         }
 
-        [$width, $height] = $this->getScaledDimensions($maxWidth, $maxHeight);
+        [$width, $height] = getimagesize($this->imagePath);
+        [$newWidth, $newHeight] = $this->getScaledDimensions($maxWidth, $maxHeight);
 
-        $this->image = imagescale($image, $width, $height);
+        $this->image = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($this->image, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
     }
 
     /**
