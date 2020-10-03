@@ -6,5 +6,8 @@ Small lib to print images using Symfony Console inspired by [new features](https
 ```bash
 $ git clone git@github.com:chr-hertel/cli-image-printer.git
 $ cd cli-image-printer
+$ composer install
 $ printer.php path/to/image.jpg
 ```
+
+![](docs/isj28sosje.gif)
