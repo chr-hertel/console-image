@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Stoffel\Console\Image;
 
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Terminal;
 
@@ -31,7 +32,7 @@ class ImageHelper
             for ($x = 0; $x < $width; $x++) {
                 $bgColor = $reader->getImagePixel($x, $y)->toHex();
                 $fgColor = $y + 1 >= $height ? 'black' : $reader->getImagePixel($x, $y + 1)->toHex();
-                $output .= sprintf('<fg=%s;bg=%s>▄</>', $fgColor, $bgColor);
+                $output .= (new Color($fgColor, $bgColor))->apply('▄');
             }
 
             $output .= PHP_EOL;
