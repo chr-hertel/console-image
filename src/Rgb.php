@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace Stoffel\Console\Image;
 
 /**
  * This code was originally posted in a comment by @hallboav of this blog post:

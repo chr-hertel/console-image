@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Stoffel\Console\Image\ImageHelper;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\SingleCommandApplication;
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+(new SingleCommandApplication())
+    ->addArgument('image', InputArgument::REQUIRED, 'Path to image to print')
+    ->addOption('max-width', 'w', InputOption::VALUE_REQUIRED, 'Maximal width of the image to print')
+    ->addOption('max-height', 'e', InputOption::VALUE_REQUIRED, 'Maximal height of the image to print')
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+
+        $image = $input->getArgument('image');
+        $maxWidth = $input->getOption('max-width') ? (int)$input->getOption('max-width') : null;
+        $maxHeight = $input->getOption('max-height') ? (int)$input->getOption('max-height') : null;
+
+        $helper = new ImageHelper($output);
+        $helper->print($image, $maxWidth, $maxHeight);
+
+    })
+    ->run();
+

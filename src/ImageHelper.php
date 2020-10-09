@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace Stoffel\Console\Image;
 
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Terminal;
 
-class Printer
+class ImageHelper
 {
     private OutputInterface $output;
 
@@ -15,9 +16,13 @@ class Printer
         $this->output = $output;
     }
 
-    public function print(string $image, int $maxWidth, int $maxHeight): void
+    public function print(string $imagePath, int $maxWidth = null, int $maxHeight = null): void
     {
-        $reader = new Reader($image, $maxWidth, $maxHeight);
+        $terminal = new Terminal();
+        $maxWidth = $maxWidth ?? $terminal->getWidth();
+        $maxHeight = $maxHeight ?? $terminal->getHeight() * 2 - 4;
+
+        $reader = new Reader($imagePath, $maxWidth, $maxHeight);
 
         [$width, $height] = $reader->getScaledDimensions($maxWidth, $maxHeight);
 

@@ -1,15 +1,15 @@
 {
-    "name": "stoffel/cli-image-printer",
-    "description": "Small lib to print image using Symfony console",
+    "name": "stoffel/console-image",
+    "description": "Helper to print images using Symfony Console",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "src"
+            "Stoffel\\Console\\Image\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests"
+            "Stoffel\\Console\\Image\\Tests\\": "tests/"
         }
     },
     "require": {

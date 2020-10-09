@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace Stoffel\Console\Image\Tests;
 
-use App\Scaler;
 use PHPUnit\Framework\TestCase;
+use Stoffel\Console\Image\Scaler;
 
 class ScalerTest extends TestCase
 {
