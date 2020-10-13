@@ -23,9 +23,10 @@ Usage in PHP
 ```php
 use Stoffel\Console\Image\ImageHelper;
 
-$helper = new ImageHelper($output);
-$helper->print('/path/to/image.jpg');
+ImageHelper::create($output)
+    ->print('/path/to/image.jpg');
 
 // or with explicit maximal dimensions (still scaled in correct aspect ration)
-$helper->print('/path/to/image.jpg', 40, 20);
+ImageHelper::create($output)
+    ->print('/path/to/image.jpg', 40, 20);
 ```

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stoffel\Console\Image;
 
 use Symfony\Component\Console\Color;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Terminal;
 
@@ -12,12 +13,17 @@ class ImageHelper
 {
     private OutputInterface $output;
 
-    public function __construct(OutputInterface $output)
+    private function __construct(OutputInterface $output)
     {
         $this->output = $output;
     }
 
-    public function print(string $imagePath, int $maxWidth = null, int $maxHeight = null): void
+    public static function create(OutputInterface $output = null): self
+    {
+        return new self($output ?? new NullOutput());
+    }
+
+    public function render(string $imagePath, int $maxWidth = null, int $maxHeight = null): string
     {
         $terminal = new Terminal();
         $maxWidth = $maxWidth ?? $terminal->getWidth();
@@ -38,6 +44,11 @@ class ImageHelper
             $output .= PHP_EOL;
         }
 
-        $this->output->write($output);
+        return $output;
+    }
+
+    public function print(string $imagePath, int $maxWidth = null, int $maxHeight = null): void
+    {
+        $this->output->write($this->render($imagePath, $maxWidth, $maxHeight));
     }
 }

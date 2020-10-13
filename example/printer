@@ -22,8 +22,8 @@ require dirname(__DIR__).'/vendor/autoload.php';
         $maxWidth = $input->getOption('max-width') ? (int)$input->getOption('max-width') : null;
         $maxHeight = $input->getOption('max-height') ? (int)$input->getOption('max-height') : null;
 
-        $helper = new ImageHelper($output);
-        $helper->print($image, $maxWidth, $maxHeight);
+        ImageHelper::create($output)
+            ->print($image, $maxWidth, $maxHeight);
 
     })
     ->run();
