@@ -1,7 +1,14 @@
 {
     "name": "stoffel/console-image",
     "description": "Helper to print images using Symfony Console",
+    "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Hertel",
+            "email": "mail@christopher-hertel.de"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Stoffel\\Console\\Image\\": "src/"
@@ -15,7 +22,7 @@
     "require": {
         "php": "^7.4",
         "ext-gd": "*",
-        "symfony/console": "dev-master",
+        "symfony/console": "^5.2@dev",
         "symfony/mime": "^5.1"
     },
     "require-dev": {
